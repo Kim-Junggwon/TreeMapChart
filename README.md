@@ -42,7 +42,7 @@ $ npm install mysql --save
 ```
 
 #### nodemon
-소스 수정시 자동으로 서버를 재시작해주는 패키지
+소스 수정시 자동으로 서버를 재시작해주는 패키지  
 Command Line에서 명령어를 사용할 것이기 때문에 -g 옵션을 붙여서 글로벌로 설치
 ```bash
 $ npm install nodemon -g
