@@ -20,6 +20,6 @@
 [Download](https://nodejs.org/en/download/)
 
 ### npm
-'''bash
+```bash
 $ npm install
-'''
+```
