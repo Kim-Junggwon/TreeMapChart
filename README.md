@@ -40,3 +40,17 @@ $ npm init -y
 $ npm install express --save
 $ npm install mysql --save
 ```
+
+#### nodemon
+소스 수정시 자동으로 서버를 재시작해주는 패키지
+Command Line에서 명령어를 사용할 것이기 때문에 -g 옵션을 붙여서 글로벌로 설치
+```bash
+$ npm install nodemon -g
+```
+
+##### 사용법
+서버를 가동하는 코드를 nodemon 명령어 뒤에 입력한다
+```bash
+$ nodemon server.js
+```
+
