@@ -47,7 +47,7 @@ Command Line에서 명령어를 사용할 것이기 때문에 -g 옵션을 붙�
 ```bash
 $ npm install nodemon -g
 ```
-- 사용법  
+사용법  
 서버를 가동하는 코드를 nodemon 명령어 뒤에 입력한다
 ```bash
 $ nodemon server.js
