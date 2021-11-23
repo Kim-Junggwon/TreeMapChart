@@ -37,6 +37,6 @@ $ npm init -y
 
 #### express, mysql 패키지 설치 ([--svae]: package.json 파일에 dependencies 리스트 추가)
 ```bash
-npm install express --save
-npm install mysql --save
+$ npm install express --save
+$ npm install mysql --save
 ```
