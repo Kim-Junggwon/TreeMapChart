@@ -7,6 +7,12 @@
 ![Javascript](https://img.shields.io/badge/-Javascript-yellow)
 ![Python](https://img.shields.io/badge/-Python-9cf)
 
+
+
+![node.js](https://img.shields.io/badge/node.js-v16.13-brightgreen)
+![npm](https://img.shields.io/badge/npm-v8.1.0-green)
+![MySQL](https://img.shields.io/badge/MySQL-v5.7-blue)
+
 ## Technique
 - Html
 - Javascript
