@@ -12,6 +12,11 @@
 
 ## Installation
 
+### MySQL
+[Download](https://downloads.mysql.com/archives/installer/)
+
+
 ### node.js
-`[Download](https://nodejs.org/en/download/)`
-`[Download](https://nodejs.org/en/download/)`
+[Download](https://nodejs.org/en/download/)
+
+### npm
