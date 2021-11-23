@@ -20,6 +20,20 @@
 [Download](https://nodejs.org/en/download/)
 
 ### npm
+
+#### node.js 설치 후 버전 확인
 ```bash
-$ npm install
+$ npm -v
+$ node -v
+```
+
+#### default 값으로 package.json 생성
+```bash
+$ npm init -y
+```
+
+#### express, mysql 패키지 설치 ([--svae]: package.json 파일에 dependencies 리스트 추가)
+```bash
+npm install express --save
+npm install mysql --save
 ```
