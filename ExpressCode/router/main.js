@@ -9,39 +9,67 @@ var connection = mysql.createConnection({
 	dateStrings : 'date'
 });
 
-// var i = 0;
-var a = "";
-
-var interval = function () {	// 쿼리 호출 및 변수값 정의
-	connection.query('SELECT * FROM TRAFFIC WHERE DATE > NOW() - INTERVAL 15 SECOND', (error, result, fields) => {
-		if (error) {
-			console.log('Error: ', error);
-		}
-		// console.log(result[0]);
-		a = result[result.length - 1];
-		connection.end();     
-	});
-};
 
 var callQuery = function(app) {
-	app.get('/', function(req, res) {
 
-		interval();
+	var date = [];
+	var host = [];
+	var cate = [];
 
-		var result = a.date;
+	setInterval(() => {
 
-		if (result != undefined) {
-			res.render('index.ejs', {result:result});
-			console.log(result);
-			return;
-		} else {
-			res.send("<h1>err</h1>");
-		}
-	});
+		connection.query('SELECT * FROM TRAFFIC WHERE DATE > NOW() - INTERVAL 10 SECOND', (error, result, field) => {
+			if (error) {
+				console.log('Err: ', error);
 
-	app.get('/about', function(req, res) {
-		res.render('about.html');
-	});
+			} else {
+				for (var i in result) {
+					date[i] = result[i].date;
+					host[i] = result[i].host;
+					cate[i] = result[i].category;
+				}
+				console.log(cate);
+			}
+		});
+
+		app.get('/', function(req, res) {
+			res.render('index.ejs', {
+				date : date,
+				host : host,
+				cate : cate
+			});
+
+			date = [];	// 렌더링 후 배열 초기화
+			host = [];
+			cate = [];
+		});
+	}, 1000);
+
 };
 
 module.exports = callQuery;
+
+
+// connection.connect(
+// 			function (err) { 
+// 			    if (err) { 
+// 			        console.log("Error");
+// 			        throw err;
+// 			    }
+// 			    else {
+// 			        console.log("Connection");
+
+// 			        // setInterval(() => {
+// 						connection.query('SELECT * FROM TRAFFIC order by desc limit 1', (error, result, fields) => {
+// 							if (error) {
+// 								console.log('Error: ', error);
+// 							}
+// 							console.log(result);
+			    
+// 			    			res.render('index.ejs', {result:result});
+// 						});
+// 					// }, 1000);
+// 			    }
+
+
+// 			});
