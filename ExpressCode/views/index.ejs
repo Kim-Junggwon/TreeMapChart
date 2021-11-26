@@ -6,18 +6,26 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script>
     	google.charts.load('current', {'packages':['treemap']});
-    	google.charts.setOnLoadCallback(drawChart);
 	
 
 
     	setInterval(() => {
-    		$('#resultDiv').load(window.location.href + ' #resultDiv');
-
-    		var test = document.getElementById('dateValue');
-    		console.log(test.innerText);
-
+    		$('#resultDiv').load(window.location.href + ' #resultDiv');	// rendering data reload
+    		google.charts.setOnLoadCallback(drawChart);
     	}, 1000);
 
+    	function getData() {
+    		var host = document.getElementById('hostValue');
+    		var cate = document.getElementById('cateValue');
+
+    		host = host.innerText.split(',');
+    		cate = cate.innerText.split(',');
+
+    		return  {
+    			host,
+    			cate
+    		};
+    	}
 
     	function drawChart() {
     		var data = new google.visualization.DataTable();
@@ -52,6 +60,30 @@
                 ['Zook', '원격제어', 0, 0],
                 ['Remotecall', '원격제어', 0, 0],
             ]);
+
+            var num = data.Wf.length;	// Table default data Num // 수정... const? initFunc? 뭘로할까ㅏㅏㅏㅏㅏㅏ
+			
+			var render = getData();
+    		var host = render.host;
+    		var cate = render.cate;
+    		var len = host.length;
+    		var input = ['', '', 5, 5];
+
+    		// for (num; num < ) {
+    		// 	console.log(data.Wf[i].c[0].v);
+    		// }
+
+    		input[0] = host[0];
+    		input[1] = cate[0];
+
+    		data.addRow(input);
+    		
+            data.addRow(['testData', '원격제어', 3, 1]);
+            data.addRow(['testData1', 'P2P', 5, 1]);
+            data.addRow(['testData2', '우회접속', 1, 1]);
+
+
+            console.log(num);
 
 
     		tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
