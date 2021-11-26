@@ -3,10 +3,22 @@
 <head>
 	<title>Main</title>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script>
     	google.charts.load('current', {'packages':['treemap']});
     	google.charts.setOnLoadCallback(drawChart);
-    	
+	
+
+
+    	setInterval(() => {
+    		$('#resultDiv').load(window.location.href + ' #resultDiv');
+
+    		var test = document.getElementById('dateValue');
+    		console.log(test.innerText);
+
+    	}, 1000);
+
+
     	function drawChart() {
     		var data = new google.visualization.DataTable();
 
@@ -21,84 +33,27 @@
                 ['미분류', 'App', 0, 0],
                 ['우회접속', 'App', 0, 0],
                 ['P2P', 'App', 0, 0],
-                ['메신저', 'App', 0, 0],
                 ['원격제어', 'App', 0, 0],
+                ['메신저', 'App', 0, 0],
+
+                ['PureVPN', '우회접속', 0, 0],
+                ['UltraSurf', '우회접속', 0, 0],
+                ['Browsec', '우회접속', 0, 0],
+                ['QQdownload', '우회접속', 0, 0],
 
                 ['Fileguri', 'P2P', 0, 0],
-                ['PureVPN', '우회접속', 0, 0],
-                ['UltraSurf', '우회접속', 0, 0]
+                ['Filenara', 'P2P', 0, 0],
+                ['Orangefile', 'P2P', 0, 0],
+
+                ['NateOn_Remote', '원격제어', 0, 0],
+                ['Radmin', '원격제어', 0, 0],
+                ['TeamViewer', '원격제어', 0, 0],
+                ['LogMeIn', '원격제어', 0, 0],
+                ['Zook', '원격제어', 0, 0],
+                ['Remotecall', '원격제어', 0, 0],
             ]);
 
-            var date = "<%= date %>".split(',');
-            var category = "<%= category %>".split(',');
-            var host = "<%= host %>".split(',');
 
-            // 시작 초 구하기
-            var time = date[0].split(' ');
-            var time2 = time[1].split(':');
-            var startSec = parseInt(time2[2]);
-
-            var cateIdx = data.Wf.length;	// Row Table에 선언된 카테고리 목록의 length
-
-            for (var i = 0; i < 5; i++) {
-            	var inputData = ['', '', 1, 1];
-
-            	var rowDate = date[i];
-            	var rowHost = host[i];
-            	var rowCate = category[i];
-
-            	inputData[0] = rowHost;
-            	inputData[1] = rowCate;
-
-            	data.addRow(inputData);
-            }
-
-            /*for (var i in date) {
-            	var inputData = ['', '', 0, 0];
-
-            	var rowDate = date[i];
-            	var rowHost = host[i];
-            	var rowCate = category[i];
-
-            	var secTmp = rowDate.split(' ');
-            	var secTmp2 = secTmp[1].split(':');
-            	var nowSec = parseInt(secTmp2[2]);
-
-            	if (nowSec > startSec + 4) {	// 시작 시간에서 5초 경과했을 경우
-            		break;
-            	}
-
-            	var nowLen = data.Wf.length;
-
-            	if (cateIdx != nowLen) {
-            		for (cateIdx; cateIdx < nowLen; cateIdx++) {
-            			var checkHost = data.Wf[cateIdx].c[0].v;
-            			console.log(checkHost);
-            			if (rowHost == checkHost) {
-            				inputData[3]++;
-
-            			}
-            		} // end for
-            	}
-
-            	inputData[0] = rowHost;
-            	inputData[1] = rowCate;
-
-            	data.addRow(inputData);
-
-            } // end for*/
-
-
-
-            // data.addRow(['Data01', 'P2P', 10, 5]);
-            // data.addRow(['Data02', 'P2P', 5, 2]);
-            // data.addRow(['Data03', '메신저', 8, 4]);
-            // data.addRow(['Data04', '원격제어', 6, 3]);
-            // data.addRow(['Data05', '원격제어', 10, 5]);
-
-           	// console.log(data);
-
-           	
     		tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
             var options = {
                 minColor: '#b7be7e',
@@ -123,7 +78,13 @@
     </script>
 </head>
 <body>
-	<h1>Main Pageeeeeeeeeeeee</h1>
+	<h1>Main Page</h1>
 	<div id="chart_div"></div>
+	<!-- <div id="dateValue" style="display: none;"><%= date %></div> -->
+	<div id="resultDiv">
+		<div id="dateValue"><%= date %></div>
+		<div id="hostValue"><%= host %></div>
+		<div id="cateValue"><%= cate %></div>
+	</div>
 </body>
 </html>
