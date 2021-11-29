@@ -9,10 +9,10 @@
 	
 
 
-    	setInterval(() => {
+    	// setInterval(() => {
     		$('#resultDiv').load(window.location.href + ' #resultDiv');	// rendering data reload
     		google.charts.setOnLoadCallback(drawChart);
-    	}, 1000);
+    	// }, 1000);
 
     	function getData() {
     		var host = document.getElementById('hostValue');
@@ -27,66 +27,60 @@
     		};
     	}
 
+    	var setTableRowData = [
+            ['App', null, 0, 0],
+
+            ['미분류', 'App', 0, 0],
+            ['우회접속', 'App', 0, 0],
+            ['P2P', 'App', 0, 0],
+            ['원격제어', 'App', 0, 0],
+            ['메신저', 'App', 0, 0],
+
+            ['PureVPN', '우회접속', 0, 0],
+            ['UltraSurf', '우회접속', 0, 0],
+            ['Browsec', '우회접속', 0, 0],
+            ['QQdownload', '우회접속', 0, 0],
+
+            ['Fileguri', 'P2P', 0, 0],
+            ['Filenara', 'P2P', 0, 0],
+            ['Orangefile', 'P2P', 0, 0],
+
+            ['NateOn_Remote', '원격제어', 0, 0],
+            ['Radmin', '원격제어', 0, 0],
+            ['TeamViewer', '원격제어', 0, 0],
+            ['LogMeIn', '원격제어', 0, 0],
+            ['Zook', '원격제어', 0, 0],
+            ['Remotecall', '원격제어', 0, 0],
+    	];
+
     	function drawChart() {
-    		var data = new google.visualization.DataTable();
+			var data = new google.visualization.DataTable();
 
             data.addColumn('string', 'Name');
             data.addColumn('string', 'Category');
             data.addColumn('number', 'size');
             data.addColumn('number', 'color');
 
-            data.addRows([  // Set default Category
-                ['App', null, 0, 0],
+            data.addRows(setTableRowData);	// set default category
 
-                ['미분류', 'App', 0, 0],
-                ['우회접속', 'App', 0, 0],
-                ['P2P', 'App', 0, 0],
-                ['원격제어', 'App', 0, 0],
-                ['메신저', 'App', 0, 0],
-
-                ['PureVPN', '우회접속', 0, 0],
-                ['UltraSurf', '우회접속', 0, 0],
-                ['Browsec', '우회접속', 0, 0],
-                ['QQdownload', '우회접속', 0, 0],
-
-                ['Fileguri', 'P2P', 0, 0],
-                ['Filenara', 'P2P', 0, 0],
-                ['Orangefile', 'P2P', 0, 0],
-
-                ['NateOn_Remote', '원격제어', 0, 0],
-                ['Radmin', '원격제어', 0, 0],
-                ['TeamViewer', '원격제어', 0, 0],
-                ['LogMeIn', '원격제어', 0, 0],
-                ['Zook', '원격제어', 0, 0],
-                ['Remotecall', '원격제어', 0, 0],
-            ]);
-
-            var num = data.Wf.length;	// Table default data Num // 수정... const? initFunc? 뭘로할까ㅏㅏㅏㅏㅏㅏ
+            // console.log(len);
 			
 			var render = getData();
     		var host = render.host;
     		var cate = render.cate;
-    		var len = host.length;
-    		var input = ['', '', 5, 5];
+        	var hostLen = host.length;
+        	var addDatas = [];
 
-    		// for (num; num < ) {
-    		// 	console.log(data.Wf[i].c[0].v);
-    		// }
-
-    		input[0] = host[0];
-    		input[1] = cate[0];
-
-    		data.addRow(input);
+    		var input = ['', '', 1, 5];
     		
-            data.addRow(['testData', '원격제어', 3, 1]);
-            data.addRow(['testData1', 'P2P', 5, 1]);
+            data.addRow(['testData1', '원격제어', 3, 1]);
             data.addRow(['testData2', '우회접속', 1, 1]);
-
-
-            console.log(num);
-
+            data.addRow(['testData3', '우회접속', 2, 1]);
+            data.addRow(['testData4', '우회접속', 2, 1]);
+            data.addRow(['testData5', '우회접속', 2, 1]);
 
     		tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
+
             var options = {
                 minColor: '#b7be7e',
                 midColor: '#f7d374',
@@ -104,7 +98,16 @@
                 '<br>[Cell size] ' + data.getValue(row, 2) + '<br>[RISK] ' + data.getValue(row, 3) + '<br>' + data.getColumnLabel(2) + size + '<br>' + ' </div>';
             }
 
-            tree.draw(data, options);
+            if (host[0] != '') {	// 전달되는 호스트가 있는 경우
+
+
+
+            	tree.draw(data, options);
+            } else {
+            	// no draw chart
+            	console.log('no data');
+            	return;
+            }
 
     	}
     </script>
