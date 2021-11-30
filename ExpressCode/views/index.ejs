@@ -6,13 +6,11 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script>
     	google.charts.load('current', {'packages':['treemap']});
-	
 
-
-    	// setInterval(() => {
+    	setInterval(() => {
     		$('#resultDiv').load(window.location.href + ' #resultDiv');	// rendering data reload
     		google.charts.setOnLoadCallback(drawChart);
-    	// }, 1000);
+    	}, 3000);
 
     	function getData() {
     		var host = document.getElementById('hostValue');
@@ -72,12 +70,6 @@
         	var addDatas = [];
 
     		var input = ['', '', 1, 5];
-    		
-            data.addRow(['testData1', '원격제어', 3, 1]);
-            data.addRow(['testData2', '우회접속', 1, 1]);
-            data.addRow(['testData3', '우회접속', 2, 1]);
-            data.addRow(['testData4', '우회접속', 2, 1]);
-            data.addRow(['testData5', '우회접속', 2, 1]);
 
     		tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
 
@@ -86,7 +78,7 @@
                 midColor: '#f7d374',
                 maxColor: '#c25b5d',
                 generateTooltip: showStaticTooltip,
-                maxDepth: 3,
+                maxDepth: 2,
                 headerHeight: 15,
                 width: 900,
                 height: 500
@@ -99,8 +91,33 @@
             }
 
             if (host[0] != '') {	// 전달되는 호스트가 있는 경우
+            	var hSize = [];
+            	var hRisk = [];
 
+            	for (var i = 0; i < hostLen; i++) {
+            		hSize[i] = 1;
+            		hRisk[i] = 1;
+            	}
 
+            	for (var i = 0; i < hostLen; i++) {
+            		for (var j = 0; j < i; j++) {
+            			if (host[i] == host[j] && cate[i] == cate[j]) {	// undefined, cate 중복일 경우 예외처리 추가 필요
+            				delete host[i];
+
+            				hSize[j]++;
+            				hRisk[j]++;
+
+            				console.log('over');
+            			}
+            		}
+            	}
+
+            	for (var i = 0; i < hostLen; i++) {
+            		addDatas[i] = [host[i], cate[i], hSize[i], hRisk[i]];
+            	}
+
+            	console.log(addDatas);
+            	data.addRows(addDatas);
 
             	tree.draw(data, options);
             } else {
@@ -115,11 +132,10 @@
 <body>
 	<h1>Main Page</h1>
 	<div id="chart_div"></div>
-	<!-- <div id="dateValue" style="display: none;"><%= date %></div> -->
 	<div id="resultDiv">
-		<div id="dateValue"><%= date %></div>
-		<div id="hostValue"><%= host %></div>
-		<div id="cateValue"><%= cate %></div>
+		<div id="dateValue" style="display: none;"><%= date %></div>
+		<div id="hostValue" style="display: none;"><%= host %></div>
+		<div id="cateValue" style="display: none;"><%= cate %></div>
 	</div>
 </body>
 </html>
