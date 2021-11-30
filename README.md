@@ -57,5 +57,7 @@ $ nodemon server.js
 
 
 ## Sample Image
-![image](https://user-images.githubusercontent.com/94525599/143175213-7c922a64-2f97-4059-9363-78879267fc68.png)
+![image](https://user-images.githubusercontent.com/94525599/143175213-7c922a64-2f97-4059-9363-78879267fc68.png)  
+![image](https://user-images.githubusercontent.com/94525599/143987468-5a8fe903-cb99-4999-8efc-5a37cd4ac298.png)
+
 
