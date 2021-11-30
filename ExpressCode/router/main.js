@@ -17,8 +17,7 @@ var callQuery = function(app) {
 	var cate = [];
 
 	setInterval(() => {
-
-		connection.query('SELECT * FROM TRAFFIC WHERE DATE > NOW() - INTERVAL 10 SECOND', (error, result, field) => {
+		connection.query('SELECT * FROM TRAFFIC WHERE DATE > NOW() - INTERVAL 10 minute', (error, result, field) => {
 			if (error) {
 				console.log('Err: ', error);
 
@@ -28,7 +27,9 @@ var callQuery = function(app) {
 					host[i] = result[i].host;
 					cate[i] = result[i].category;
 				}
+				console.log(date);
 				console.log(cate);
+				console.log(host);
 			}
 		});
 
@@ -43,33 +44,8 @@ var callQuery = function(app) {
 			host = [];
 			cate = [];
 		});
-	}, 1000);
+	}, 3000);
 
 };
 
 module.exports = callQuery;
-
-
-// connection.connect(
-// 			function (err) { 
-// 			    if (err) { 
-// 			        console.log("Error");
-// 			        throw err;
-// 			    }
-// 			    else {
-// 			        console.log("Connection");
-
-// 			        // setInterval(() => {
-// 						connection.query('SELECT * FROM TRAFFIC order by desc limit 1', (error, result, fields) => {
-// 							if (error) {
-// 								console.log('Error: ', error);
-// 							}
-// 							console.log(result);
-			    
-// 			    			res.render('index.ejs', {result:result});
-// 						});
-// 					// }, 1000);
-// 			    }
-
-
-// 			});
