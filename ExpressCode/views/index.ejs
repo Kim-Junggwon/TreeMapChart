@@ -6,13 +6,18 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script>
     	google.charts.load('current', {'packages':['treemap']});
+		google.charts.setOnLoadCallback(drawChart);
 
     	setInterval(() => {
-    		$('#resultDiv').load(window.location.href + ' #resultDiv');	// rendering data reload
-    		google.charts.setOnLoadCallback(drawChart);
+    		change()
     	}, 3000);
 
-    	function getData() {
+    	function change() {		// 렌더링 데이터 호출 후 draw chart
+    		$('#resultDiv').load(window.location.href + ' #resultDiv');	// rendering data reload
+    		drawChart();
+		}
+
+    	function getData() {	// 서버에서 수신한 데이터 호출
     		var host = document.getElementById('hostValue');
     		var cate = document.getElementById('cateValue');
 
@@ -25,34 +30,34 @@
     		};
     	}
 
-    	var setTableRowData = [
-            ['App', null, 0, 0],
+    	function setData() {	// Column, 상위 Category 정의
+    		var data = new google.visualization.DataTable();
 
-            ['미분류', 'App', 0, 0],
-            ['우회접속', 'App', 0, 0],
-            ['P2P', 'App', 0, 0],
-            ['원격제어', 'App', 0, 0],
-            ['메신저', 'App', 0, 0],
+	    	var setTableRowData = [
+	            ['App', null, 0, 0],
 
-            ['PureVPN', '우회접속', 0, 0],
-            ['UltraSurf', '우회접속', 0, 0],
-            ['Browsec', '우회접속', 0, 0],
-            ['QQdownload', '우회접속', 0, 0],
+	            ['미분류', 'App', 0, 0],
+	            ['우회접속', 'App', 0, 0],
+	            ['P2P', 'App', 0, 0],
+	            ['원격제어', 'App', 0, 0],
+	            ['메신저', 'App', 0, 0],
 
-            ['Fileguri', 'P2P', 0, 0],
-            ['Filenara', 'P2P', 0, 0],
-            ['Orangefile', 'P2P', 0, 0],
+	            ['PureVPN', '우회접속', 0, 0],
+	            ['UltraSurf', '우회접속', 0, 0],
+	            ['Browsec', '우회접속', 0, 0],
+	            ['QQdownload', '우회접속', 0, 0],
 
-            ['NateOn_Remote', '원격제어', 0, 0],
-            ['Radmin', '원격제어', 0, 0],
-            ['TeamViewer', '원격제어', 0, 0],
-            ['LogMeIn', '원격제어', 0, 0],
-            ['Zook', '원격제어', 0, 0],
-            ['Remotecall', '원격제어', 0, 0],
-    	];
+	            ['Fileguri', 'P2P', 0, 0],
+	            ['Filenara', 'P2P', 0, 0],
+	            ['Orangefile', 'P2P', 0, 0],
 
-    	function drawChart() {
-			var data = new google.visualization.DataTable();
+	            ['NateOn_Remote', '원격제어', 0, 0],
+	            ['Radmin', '원격제어', 0, 0],
+	            ['TeamViewer', '원격제어', 0, 0],
+	            ['LogMeIn', '원격제어', 0, 0],
+	            ['Zook', '원격제어', 0, 0],
+	            ['Remotecall', '원격제어', 0, 0],
+	    	];
 
             data.addColumn('string', 'Name');
             data.addColumn('string', 'Category');
@@ -61,17 +66,18 @@
 
             data.addRows(setTableRowData);	// set default category
 
-            // console.log(len);
-			
+    		return data;
+    	}
+
+    	function drawChart() {
+			var data = setData();
+
 			var render = getData();
     		var host = render.host;
     		var cate = render.cate;
         	var hostLen = host.length;
+
         	var addDatas = [];
-
-    		var input = ['', '', 1, 5];
-
-    		tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
 
             var options = {
                 minColor: '#b7be7e',
@@ -81,7 +87,9 @@
                 maxDepth: 2,
                 headerHeight: 15,
                 width: 900,
-                height: 500
+                height: 500,
+
+                showScale: true,	// 차트 상단 그라데이션 스케일
             };
 
             function showStaticTooltip(row, size, value) {
@@ -89,6 +97,8 @@
                 '<span style="font-family:Courier"><b>' + data.getValue(row, 0) + '</b><br>' + '[Category] ' + data.getValue(row, 1) + 
                 '<br>[Cell size] ' + data.getValue(row, 2) + '<br>[RISK] ' + data.getValue(row, 3) + '<br>' + data.getColumnLabel(2) + size + '<br>' + ' </div>';
             }
+
+    		tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
 
             if (host[0] != '') {	// 전달되는 호스트가 있는 경우
             	var hSize = [];
@@ -101,13 +111,11 @@
 
             	for (var i = 0; i < hostLen; i++) {
             		for (var j = 0; j < i; j++) {
-            			if (host[i] == host[j] && cate[i] == cate[j]) {	// undefined, cate 중복일 경우 예외처리 추가 필요
+            			if (host[i] == host[j] && cate[i] == cate[j] && host[i] != undefined) {
             				delete host[i];
 
             				hSize[j]++;
             				hRisk[j]++;
-
-            				console.log('over');
             			}
             		}
             	}
@@ -116,12 +124,11 @@
             		addDatas[i] = [host[i], cate[i], hSize[i], hRisk[i]];
             	}
 
-            	console.log(addDatas);
             	data.addRows(addDatas);
 
             	tree.draw(data, options);
-            } else {
-            	// no draw chart
+
+            } else {	// no draw chart
             	console.log('no data');
             	return;
             }
@@ -137,5 +144,6 @@
 		<div id="hostValue" style="display: none;"><%= host %></div>
 		<div id="cateValue" style="display: none;"><%= cate %></div>
 	</div>
+	<!-- <input type="button" value="test" onclick="change()"> -->
 </body>
 </html>
