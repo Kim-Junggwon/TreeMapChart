@@ -10,6 +10,13 @@
 ![npm](https://img.shields.io/badge/npm-v8.1.0-green)
 ![MySQL](https://img.shields.io/badge/MySQL-v5.7-blue)   
 
+## 참여 인원
+|김중권|유병학|
+|-----|-----|
+|node 서버 환경 구축   DB연동 코드 작성   구글 차트 라이브러리 코드 작성
+||
+
+
 ## Installation
 
 ### MySQL
