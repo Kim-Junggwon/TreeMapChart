@@ -13,7 +13,7 @@
 ## 참여 인원
 |김중권|유병학|
 |-----|-----|
-|- node 서버 환경 구축 <br> - DB연동 코드 작성 <br> - 구글 차트 라이브러리 연동 및 코드 작성 | - temp text <br> - temp text2
+|- Express(node) 서버 환경 구축 <br> - DB연동 및 호출 쿼리 코드 작성(main.js) <br> - 구글 차트 라이브러리 연동 및 데이터 호출 코드 작성(index.ejs) | - temp text <br> - temp text2
 
 
 ## Installation
