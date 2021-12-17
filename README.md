@@ -8,12 +8,7 @@
 ![Python](https://img.shields.io/badge/-Python-9cf)
 ![node.js](https://img.shields.io/badge/node.js-v16.13-brightgreen)
 ![npm](https://img.shields.io/badge/npm-v8.1.0-green)
-![MySQL](https://img.shields.io/badge/MySQL-v5.7-blue)
-
-
-
-
-
+![MySQL](https://img.shields.io/badge/MySQL-v5.7-blue)   
 
 ## Installation
 
@@ -57,10 +52,11 @@ $ nodemon server.js
 ```
 
 
-
-
-
 ## Sample Image
-![treemap_ex](https://user-images.githubusercontent.com/94525599/146505049-136c53bf-1f77-461a-98a6-867c67583420.gif)  
-2초마다 지난 5분간의 데이터를 트리맵 차트로 그려주는 예시
+![treemap_ex](https://user-images.githubusercontent.com/94525599/146505049-136c53bf-1f77-461a-98a6-867c67583420.gif)   
+2초마다 지난 5분간의 데이터를 트리맵 차트로 그려주는 예시   
+```sql
+ SELECT * FROM [Table Name] WHERE DATE > NOW() - INTERVAL 5 MINUTE
+```
+
 
