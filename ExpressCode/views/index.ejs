@@ -10,7 +10,7 @@
 
     	setInterval(() => {
     		change()
-    	}, 3000);
+    	}, 2000);  // 2초마다 차트 갱신
 
     	function change() {		// 렌더링 데이터 호출 후 draw chart
     		$('#resultDiv').load(window.location.href + ' #resultDiv');	// rendering data reload
@@ -30,8 +30,13 @@
     		};
     	}
 
-    	function setData() {	// Column, 상위 Category 정의
+    	function setData() {	// 데이터 분류를 위한 상위 Category 정의
     		var data = new google.visualization.DataTable();
+
+            data.addColumn('string', 'Name');
+            data.addColumn('string', 'Category');
+            data.addColumn('number', 'size');
+            data.addColumn('number', 'color');
 
 	    	var setTableRowData = [
 	            ['App', null, 0, 0],
@@ -59,11 +64,6 @@
 	            ['Remotecall', '원격제어', 0, 0],
 	    	];
 
-            data.addColumn('string', 'Name');
-            data.addColumn('string', 'Category');
-            data.addColumn('number', 'size');
-            data.addColumn('number', 'color');
-
             data.addRows(setTableRowData);	// set default category
 
     		return data;
@@ -71,7 +71,6 @@
 
     	function drawChart() {
 			var data = setData();
-
 			var render = getData();
     		var host = render.host;
     		var cate = render.cate;
@@ -89,6 +88,7 @@
                 width: 900,
                 height: 500,
 
+                animate: true,
                 showScale: true,	// 차트 상단 그라데이션 스케일
             };
 
@@ -127,12 +127,13 @@
             	data.addRows(addDatas);
 
             	tree.draw(data, options);
+                console.log('draw');
 
             } else {	// no draw chart
-            	console.log('no data');
+                document.getElementById('chart_div').innerText = 'Not Found';
+            	console.log('Not Found');
             	return;
             }
-
     	}
     </script>
 </head>
@@ -140,7 +141,7 @@
 	<h1>Main Page</h1>
 	<div id="chart_div"></div>
 	<div id="resultDiv">
-		<div id="dateValue" style="display: none;"><%= date %></div>
+		<!-- <div id="dateValue" style="display: none;"><%= date %></div> -->
 		<div id="hostValue" style="display: none;"><%= host %></div>
 		<div id="cateValue" style="display: none;"><%= cate %></div>
 	</div>
