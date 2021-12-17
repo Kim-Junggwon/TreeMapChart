@@ -13,7 +13,7 @@
 ## 참여 인원
 |김중권|유병학|
 |-----|-----|
-|- Express(node) 서버 환경 구축 <br> - DB연동 및 호출 쿼리 코드 작성(main.js) <br> - 구글 차트 라이브러리 연동 및 데이터 호출 코드 작성(index.ejs) | - MySql 테이블 생성 및 초기화 코드 작성(DateDBsetting.py) <br> - DB접속 및 랜덤한 데이터 생성 코드 작성(createData.py)
+|- Express(node) 서버 환경 구축(server.js) <br> - DB연동 및 호출 쿼리 코드 작성(main.js) <br> - 구글 차트 라이브러리 연동 및 데이터 호출 코드 작성(index.ejs) | - MySql 테이블 생성 및 초기화 코드 작성(DateDBsetting.py) <br> - DB접속 및 랜덤한 데이터 생성 코드 작성(createData.py)
 
 
 ## Installation
