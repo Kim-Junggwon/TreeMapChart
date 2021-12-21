@@ -95,16 +95,14 @@ data = [
 ];
 
 
-
-
 #for i in range(50):
 while(1):
     now = datetime.datetime.now()
-    ran_index = random.randrange(0,51)      #랜덤한 인덱스 생성
-    ran_id = data[ran_index][0]             #랜덤한 인덱스를 통한 호스트 ID
-    ran_cate = data[ran_index][1]           #랜덤한 인덱스를 통한 카테고리 ID
-    ran_time =  random.randrange(2,5)/2     #랜덤한 시간
-    time.sleep(ran_time)                    #랜덤한 시간마다 sleep
+    ran_index = random.randrange(0,51)               #랜덤한 인덱스 생성
+    ran_id = data[ran_index][0]                      #랜덤한 인덱스를 통한 호스트 ID
+    ran_cate = data[ran_index][1]                    #랜덤한 인덱스를 통한 카테고리 ID
+    ran_time =  float(random.randrange(1,10))/10     #랜덤한 시간
+    time.sleep(ran_time)                             #랜덤한 시간마다 sleep
     
     print(str(now) + '\t l ' + ran_cate + '\t l ' + ran_id)
     
