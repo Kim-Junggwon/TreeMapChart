@@ -59,9 +59,12 @@ $ nodemon server.js
 
 
 ## Sample Image
-![chart](https://user-images.githubusercontent.com/94525599/146855340-4d5f3ff1-1848-4bbc-b46c-93238d3c03de.gif)   
+<div align=center>
+![chart](https://user-images.githubusercontent.com/94525599/146855340-4d5f3ff1-1848-4bbc-b46c-93238d3c03de.gif)
+</div>   
+ 
 > 2초마다 지난 5분간의 데이터를 트리맵 차트로 그려주는 예시(gif)   
-> ```sql
+```sql
  SELECT * FROM [Table Name] WHERE DATE > NOW() - INTERVAL 5 MINUTE
 ```   
 ![createData](https://user-images.githubusercontent.com/94525599/146854755-7391267b-2820-4559-a5ec-6ab7f118107a.gif)   
