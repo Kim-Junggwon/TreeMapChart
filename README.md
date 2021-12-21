@@ -13,8 +13,13 @@
 ## 참여 인원
 |김중권|유병학|
 |-----|-----|
-|- Express(node) 서버 환경 구축(server.js) <br> - DB연동 및 호출 쿼리 코드 작성(main.js) <br> - 구글 차트 라이브러리 연동 및 데이터 호출 코드 작성(index.ejs) | - MySql 테이블 생성 및 초기화 코드 작성(DateDBsetting.py) <br> - DB접속 및 랜덤한 데이터 생성 코드 작성(createData.py)
+|- Express(node) 서버 환경 구축(server.js) <br> - DB연동 및 호출 쿼리 코드 작성(main.js) <br> - 구글 차트 라이브러리 연동 및 데이터 호출 코드 작성(index.ejs) | - MySql 테이블 생성 및 초기화 코드 작성(DateDBsetting.py) <br> - DB접속 및 랜덤한 데이터 생성 코드 작성(createData.py)   
 
+## 실행 과정
+1. 랜덤한 URL 데이터를 Python 코드를 통해 생성하여 MySql DB에 삽입합니다.
+2. DB 데이터를 node 서버로 호출합니다. (express 프레임워크 사용)
+3. 구글 트리맵 차트 라이브러리를 사용하여 호출한 데이터를 차트화합니다.
+4. 최근 5분 간의 데이터를 2초 간격으로 호출하여 차트가 갱신됩니다.
 
 ## Installation
 
