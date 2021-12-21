@@ -61,6 +61,7 @@ $ nodemon server.js
 ## Sample Image
 <div align=center>
 <img src="https://user-images.githubusercontent.com/94525599/146855340-4d5f3ff1-1848-4bbc-b46c-93238d3c03de.gif">
+</div>
 > 2초마다 지난 5분간의 데이터를 트리맵 차트로 그려주는 예시(gif)   
 > 쿼리문
 ```sql
@@ -71,4 +72,3 @@ $ nodemon server.js
  
 <img src="https://user-images.githubusercontent.com/94525599/146855690-559ecd56-feb2-4744-a5a4-2b304a83c6f4.png">
 > node 서버에서 2초마다 DB 데이터를 호출함(image)
-</div>
