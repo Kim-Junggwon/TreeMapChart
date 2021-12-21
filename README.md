@@ -67,10 +67,14 @@ $ nodemon server.js
 ```sql
  SELECT * FROM [Table Name] WHERE DATE > NOW() - INTERVAL 5 MINUTE
 ```   
-
+<div align=center>
 <img src="https://user-images.githubusercontent.com/94525599/146854755-7391267b-2820-4559-a5ec-6ab7f118107a.gif">   
-> 0.1초에서 0.9초 사이의 랜덤한 시간에 데이터가 생성됨(gif)   
+</div>
+ > 0.1초에서 0.9초 사이의 랜덤한 시간에 데이터가 생성됨(gif)   
 
+ 
+<div align=center>
 <img src="https://user-images.githubusercontent.com/94525599/146855690-559ecd56-feb2-4744-a5a4-2b304a83c6f4.png">   
-> node 서버에서 2초마다 DB 데이터를 호출함(image)
+</div>
+ > node 서버에서 2초마다 DB 데이터를 호출함(image)
 
