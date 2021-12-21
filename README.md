@@ -63,6 +63,8 @@ $ nodemon server.js
 2초마다 지난 5분간의 데이터를 트리맵 차트로 그려주는 예시(gif)   
 ```sql
  SELECT * FROM [Table Name] WHERE DATE > NOW() - INTERVAL 5 MINUTE
-```
+```   
+![createData](https://user-images.githubusercontent.com/94525599/146854755-7391267b-2820-4559-a5ec-6ab7f118107a.gif)
+0.1초에서 0.9초 사이의 랜덤한 시간에 데이터가 생성됨(gif)   
 
 
