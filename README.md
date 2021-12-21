@@ -60,7 +60,7 @@ $ nodemon server.js
 
 ## Sample Image
 ![treemap_ex](https://user-images.githubusercontent.com/94525599/146505049-136c53bf-1f77-461a-98a6-867c67583420.gif)   
-2초마다 지난 5분간의 데이터를 트리맵 차트로 그려주는 예시   
+2초마다 지난 5분간의 데이터를 트리맵 차트로 그려주는 예시(gif)   
 ```sql
  SELECT * FROM [Table Name] WHERE DATE > NOW() - INTERVAL 5 MINUTE
 ```
