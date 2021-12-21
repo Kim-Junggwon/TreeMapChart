@@ -64,7 +64,7 @@ $ nodemon server.js
 ```sql
  SELECT * FROM [Table Name] WHERE DATE > NOW() - INTERVAL 5 MINUTE
 ```   
-![createData](https://user-images.githubusercontent.com/94525599/146854755-7391267b-2820-4559-a5ec-6ab7f118107a.gif)
+![createData](https://user-images.githubusercontent.com/94525599/146854755-7391267b-2820-4559-a5ec-6ab7f118107a.gif)   
 0.1초에서 0.9초 사이의 랜덤한 시간에 데이터가 생성됨(gif)   
 
 
